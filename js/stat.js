@@ -12,6 +12,9 @@ var STAT_X = CLOUD_X;
 var STAT_Y = CLOUD_Y + 85;
 var STAT_OFFSET_X = 50;
 
+var TEXT_TIME_OFFSET_Y = 10;
+var TEXT_NAME_OFFSET_Y = 20;
+
 function renderCloud(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
@@ -49,8 +52,6 @@ window.renderStatistics = function (ctx, names, times) {
 
   var startStatX = STAT_X + STAT_WIDTH;
   var textResultOffsetY = 30;
-  var textTimeOffsetY = 10;
-  var textNameOffsetY = 20;
 
   ctx.font = '16px "PT Mono"';
   ctx.fillStyle = '#000';
@@ -65,8 +66,8 @@ window.renderStatistics = function (ctx, names, times) {
     var columnHeight = (times[i] / pxRate) * (STAT_HEIGHT / 100);
     createStatRect(ctx, startStatX, STAT_Y + (STAT_HEIGHT - columnHeight), STAT_WIDTH, columnHeight, columnColor);
 
-    printStatText(ctx, names[i], startStatX, STAT_Y + STAT_HEIGHT + textNameOffsetY, columnColor);
-    printStatText(ctx, Math.round(times[i]), startStatX, STAT_Y + (STAT_HEIGHT - columnHeight) - textTimeOffsetY, columnColor);
+    printStatText(ctx, names[i], startStatX, STAT_Y + STAT_HEIGHT + TEXT_NAME_OFFSET_Y, columnColor);
+    printStatText(ctx, Math.round(times[i]), startStatX, STAT_Y + (STAT_HEIGHT - columnHeight) - TEXT_TIME_OFFSET_Y, columnColor);
 
     startStatX += STAT_OFFSET_X + STAT_WIDTH;
   }
