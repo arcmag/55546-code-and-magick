@@ -14,12 +14,12 @@ var statOffsetX = 50;
 function renderCloud(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, cloudWidth, cloudHeight);
-};
+}
 
 function createStatRect(ctx, x, y, width, height, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, width, height);
-};
+}
 
 function getRandomBlueColor() {
   return 'rgb(0, 0, ' + (Math.random() * 255) + ')';
