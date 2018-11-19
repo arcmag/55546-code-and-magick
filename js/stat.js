@@ -1,19 +1,20 @@
 'use strict';
 
-var cloudWidth = 420;
-var cloudHeight = 270;
-var cloudX = 100;
-var cloudY = 10;
+var CLOUD_WIDTH = 420;
+var CLOUD_HEIGHT = 270;
+var CLOUD_X = 100;
+var CLOUD_Y = 10;
+var SHADOW_CLOUD_OFFSET = 10;
 
-var statWidth = 40;
-var statHeight = 150;
-var statX = cloudX;
-var statY = cloudY + 85;
-var statOffsetX = 50;
+var STAT_WIDTH = 40;
+var STAT_HEIGHT = 150;
+var STAT_X = CLOUD_X;
+var STAT_Y = CLOUD_Y + 85;
+var STAT_OFFSET_X = 50;
 
 function renderCloud(ctx, x, y, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, cloudWidth, cloudHeight);
+  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 }
 
 function createStatRect(ctx, x, y, width, height, color) {
@@ -43,25 +44,30 @@ function printStatText(ctx, text, x, y, color) {
 }
 
 window.renderStatistics = function (ctx, names, times) {
-  renderCloud(ctx, cloudX + 10, cloudY + 10, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, cloudX, cloudY, '#fff');
+  renderCloud(ctx, CLOUD_X + SHADOW_CLOUD_OFFSET, CLOUD_Y + SHADOW_CLOUD_OFFSET, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+
+  var startStatX = STAT_X + STAT_WIDTH;
+  var textResultOffsetY = 30;
+  var textTimeOffsetY = 10;
+  var textNameOffsetY = 20;
 
   ctx.font = '16px "PT Mono"';
   ctx.fillStyle = '#000';
-  ctx.fillText('Ура вы победили!', cloudX + 20, cloudY + 30);
-  ctx.fillText('Список результатов:', cloudX + 20, cloudY + 50);
+  ctx.fillText('Ура вы победили!', startStatX, CLOUD_Y + textResultOffsetY);
+  textResultOffsetY += 20;
+  ctx.fillText('Список результатов:', startStatX, CLOUD_Y + textResultOffsetY);
 
   var pxRate = getMaxNumber(times) / 100;
-  var x = statX + 40;
 
   for (var i = 0; i < names.length; i++) {
     var columnColor = names[i] === 'Вы' ? 'red' : getRandomBlueColor();
-    var columnHeight = (times[i] / pxRate) * (statHeight / 100);
-    createStatRect(ctx, x, statY + (statHeight - columnHeight), statWidth, columnHeight, columnColor);
+    var columnHeight = (times[i] / pxRate) * (STAT_HEIGHT / 100);
+    createStatRect(ctx, startStatX, STAT_Y + (STAT_HEIGHT - columnHeight), STAT_WIDTH, columnHeight, columnColor);
 
-    printStatText(ctx, names[i], x, statY + statHeight + 20, columnColor);
-    printStatText(ctx, Math.round(times[i]), x, statY + (statHeight - columnHeight) - 10, columnColor);
+    printStatText(ctx, names[i], startStatX, STAT_Y + STAT_HEIGHT + textNameOffsetY, columnColor);
+    printStatText(ctx, Math.round(times[i]), startStatX, STAT_Y + (STAT_HEIGHT - columnHeight) - textTimeOffsetY, columnColor);
 
-    x += statOffsetX + statWidth;
+    startStatX += STAT_OFFSET_X + STAT_WIDTH;
   }
 };
