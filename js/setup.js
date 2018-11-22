@@ -24,16 +24,7 @@ var EYES_COLOR_LIST = [
 ];
 
 function getRandomArrayElement(array) {
-  return Math.round(Math.random() * (array.length - 1));
-}
-
-function getRandomWizardElement(element) {
-  return {
-    'coat-color': COAT_COLOR_LIST[getRandomArrayElement(COAT_COLOR_LIST)],
-    'eyes-color': EYES_COLOR_LIST[getRandomArrayElement(EYES_COLOR_LIST)],
-    'name': NAME_LIST[getRandomArrayElement(NAME_LIST)] + ' ' +
-      SUB_NAME_LIST[getRandomArrayElement(SUB_NAME_LIST)]
-  }[element];
+  return array[Math.round(Math.random() * (array.length - 1))];
 }
 
 function createWizardTemplateList(wizardList) {
@@ -58,9 +49,9 @@ function createWizardList() {
 
   for (var i = 0; i < 4; i++) {
     wizardList[i] = ({
-      name: getRandomWizardElement('name'),
-      coatColor: getRandomWizardElement('coat-color'),
-      eyesColor: getRandomWizardElement('eyes-color')
+      name: getRandomArrayElement(NAME_LIST) + ' ' + getRandomArrayElement(SUB_NAME_LIST),
+      coatColor: getRandomArrayElement(COAT_COLOR_LIST),
+      eyesColor: getRandomArrayElement(EYES_COLOR_LIST)
     });
   }
 
