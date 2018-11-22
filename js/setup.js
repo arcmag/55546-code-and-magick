@@ -29,10 +29,11 @@ function getRandomArrayElement(array) {
 
 function createWizardTemplateList(wizardList) {
   var wizardTemplateContainer = document.createDocumentFragment();
-  var tmp = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+  var tmp = document.querySelector('#similar-wizard-template');
+  var wizardItemTmp = tmp.content.querySelector('.setup-similar-item');
 
   for (var i = 0; i < wizardList.length; i++) {
-    var copyTmp = tmp.cloneNode(true);
+    var copyTmp = wizardItemTmp.cloneNode(true);
 
     copyTmp.querySelector('.setup-similar-label').textContent = wizardList[i].name;
     copyTmp.querySelector('.wizard-coat').style.fill = wizardList[i].coatColor;
