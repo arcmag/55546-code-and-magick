@@ -1,6 +1,7 @@
 'use strict';
 
-document.querySelector('.setup').classList.remove('hidden');
+var setupBlock = document.querySelector('.setup');
+setupBlock.classList.remove('hidden');
 
 var NAME_LIST = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var SUB_NAME_LIST = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -22,12 +23,16 @@ var EYES_COLOR_LIST = [
   'green'
 ];
 
+function getRandomArrayElement(array) {
+  return Math.round(Math.random() * (array.length - 1));
+}
+
 function getRandomWizardElement(element) {
   return {
-    'coat-color': COAT_COLOR_LIST[Math.round(Math.random() * (COAT_COLOR_LIST.length - 1))],
-    'eyes-color': EYES_COLOR_LIST[Math.round(Math.random() * (EYES_COLOR_LIST.length - 1))],
-    'name': NAME_LIST[Math.round(Math.random() * (NAME_LIST.length - 1))] + ' ' +
-      SUB_NAME_LIST[Math.round(Math.random() * (SUB_NAME_LIST.length - 1))]
+    'coat-color': COAT_COLOR_LIST[getRandomArrayElement(COAT_COLOR_LIST)],
+    'eyes-color': EYES_COLOR_LIST[getRandomArrayElement(EYES_COLOR_LIST)],
+    'name': NAME_LIST[getRandomArrayElement(NAME_LIST)] + ' ' +
+      SUB_NAME_LIST[getRandomArrayElement(SUB_NAME_LIST)]
   }[element];
 }
 
@@ -62,5 +67,8 @@ function createWizardList() {
   return wizardList;
 }
 
-document.querySelector('.setup-similar-list').appendChild(createWizardTemplateList(createWizardList()));
-document.querySelector('.setup-similar').classList.remove('hidden');
+var setupSimilarList = document.querySelector('.setup-similar-list');
+setupSimilarList.appendChild(createWizardTemplateList(createWizardList()));
+
+var setupSimilar = document.querySelector('.setup-similar');
+setupSimilar.classList.remove('hidden');
