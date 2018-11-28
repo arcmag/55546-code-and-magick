@@ -68,17 +68,17 @@ setupClose.addEventListener('click', function () {
   closeSetupBlock();
 });
 
-document.addEventListener("keydown", function (e) {
-  if (document.activeElement == setupOpenIcon && e.keyCode === ENTER_KEYCODE) {
+document.addEventListener('keydown', function (e) {
+  if (document.activeElement === setupOpenIcon && e.keyCode === ENTER_KEYCODE) {
     openSetupBlock();
   }
 
-  if (document.activeElement == setupClose && e.keyCode === ENTER_KEYCODE) {
+  if (document.activeElement === setupClose && e.keyCode === ENTER_KEYCODE) {
     closeSetupBlock();
   }
 
   if (!setupBlock.classList.contains('.hidden') && e.keyCode === ESC_KEYCODE &&
-        document.activeElement != userNameField) {
+        document.activeElement !== userNameField) {
     closeSetupBlock();
   }
 });
