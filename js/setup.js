@@ -52,11 +52,20 @@ function setColorWizardFireball() {
   wizardFireball.style.background = getRandomArrayElement(FIREBALL_COLOR_LIST);
 }
 
+function keydownCloseSetupBlock(e) {
+  if (!setupBlock.classList.contains('.hidden') && e.keyCode === ESC_KEYCODE &&
+        document.activeElement !== userNameField) {
+    closeSetupBlock();
+  }
+}
+
 function openSetupBlock() {
   setupBlock.classList.remove('hidden');
   wizardEyes.addEventListener('click', setColorWizardEyes);
   wizardCoat.addEventListener('click', setColorWizardCoat);
   wizardFireball.addEventListener('click', setColorWizardFireball);
+  document.addEventListener('keydown', keydownCloseSetupBlock);
+
 }
 
 function closeSetupBlock() {
@@ -64,6 +73,7 @@ function closeSetupBlock() {
   wizardEyes.removeEventListener('click', setColorWizardEyes);
   wizardCoat.removeEventListener('click', setColorWizardCoat);
   wizardFireball.removeEventListener('click', setColorWizardFireball);
+  document.removeEventListener('keydown', keydownCloseSetupBlock);
 }
 
 setupOpenIcon.addEventListener('click', function () {
@@ -74,17 +84,14 @@ setupClose.addEventListener('click', function () {
   closeSetupBlock();
 });
 
-document.addEventListener('keydown', function (e) {
-  if (document.activeElement === setupOpenIcon && e.keyCode === ENTER_KEYCODE) {
+setupOpenIcon.addEventListener('keydown', function (e) {
+  if (e.keyCode === ENTER_KEYCODE) {
     openSetupBlock();
   }
+});
 
-  if (document.activeElement === setupClose && e.keyCode === ENTER_KEYCODE) {
-    closeSetupBlock();
-  }
-
-  if (!setupBlock.classList.contains('.hidden') && e.keyCode === ESC_KEYCODE &&
-        document.activeElement !== userNameField) {
+setupClose.addEventListener('keydown', function (e) {
+  if (e.keyCode === ENTER_KEYCODE) {
     closeSetupBlock();
   }
 });
