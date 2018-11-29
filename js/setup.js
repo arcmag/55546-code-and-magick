@@ -40,24 +40,30 @@ var FIREBALL_COLOR_LIST = [
   '#e6e848',
 ];
 
-wizardEyes.addEventListener('click', function () {
+function setColorWizardEyes() {
   wizardEyes.style.fill = getRandomArrayElement(EYES_COLOR_LIST);
-});
+}
 
-wizardFireball.addEventListener('click', function () {
-  wizardFireball.style.background = getRandomArrayElement(FIREBALL_COLOR_LIST);
-});
-
-wizardCoat.addEventListener('click', function () {
+function setColorWizardCoat() {
   wizardCoat.style.fill = getRandomArrayElement(COAT_COLOR_LIST);
-});
+}
+
+function setColorWizardFireball() {
+  wizardFireball.style.background = getRandomArrayElement(FIREBALL_COLOR_LIST);
+}
 
 function openSetupBlock() {
   setupBlock.classList.remove('hidden');
+  wizardEyes.addEventListener('click', setColorWizardEyes);
+  wizardCoat.addEventListener('click', setColorWizardCoat);
+  wizardFireball.addEventListener('click', setColorWizardFireball);
 }
 
 function closeSetupBlock() {
   setupBlock.classList.add('hidden');
+  wizardEyes.removeEventListener('click', setColorWizardEyes);
+  wizardCoat.removeEventListener('click', setColorWizardCoat);
+  wizardFireball.removeEventListener('click', setColorWizardFireball);
 }
 
 setupOpenIcon.addEventListener('click', function () {
