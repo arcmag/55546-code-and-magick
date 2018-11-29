@@ -53,8 +53,7 @@ function setColorWizardFireball() {
 }
 
 function keydownCloseSetupBlock(e) {
-  if (!setupBlock.classList.contains('.hidden') && e.keyCode === ESC_KEYCODE &&
-        document.activeElement !== userNameField) {
+  if (&& e.keyCode === ESC_KEYCODE && document.activeElement !== userNameField) {
     closeSetupBlock();
   }
 }
