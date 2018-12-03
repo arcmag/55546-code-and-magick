@@ -1,6 +1,6 @@
 'use strict';
 
-var setupBlock = document.querySelector('.setup');
+var setupBlock = window.main.setupBlock;
 var setupOpenIcon = document.querySelector('.setup-open-icon');
 var setupClose = document.querySelector('.setup-close');
 var userNameField = document.querySelector('.setup-user-name');
@@ -40,6 +40,9 @@ var FIREBALL_COLOR_LIST = [
   '#e6e848',
 ];
 
+var START_SETUP_BLOCK_LEFT = '50%';
+var START_SETUP_BLOCK_TOP = '80px';
+
 function setColorWizardEyes() {
   wizardEyes.style.fill = getRandomArrayElement(EYES_COLOR_LIST);
 }
@@ -65,6 +68,8 @@ function openSetupBlock() {
   wizardFireball.addEventListener('click', setColorWizardFireball);
   document.addEventListener('keydown', keydownCloseSetupBlock);
 
+  setupBlock.style.left = START_SETUP_BLOCK_LEFT;
+  setupBlock.style.top = START_SETUP_BLOCK_TOP;
 }
 
 function closeSetupBlock() {
