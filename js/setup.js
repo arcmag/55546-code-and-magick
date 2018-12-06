@@ -163,6 +163,7 @@
   }
 
   function createWizardTemplateList(wizardList) {
+    console.log(wizardList);
     var wizardTemplateContainer = document.createDocumentFragment();
     var tmp = document.querySelector('#similar-wizard-template');
     var wizardItemTmp = tmp.content.querySelector('.setup-similar-item');
@@ -171,8 +172,8 @@
       var copyTmp = wizardItemTmp.cloneNode(true);
 
       copyTmp.querySelector('.setup-similar-label').textContent = wizardList[i].name;
-      copyTmp.querySelector('.wizard-coat').style.fill = wizardList[i].coatColor;
-      copyTmp.querySelector('.wizard-eyes').style.fill = wizardList[i].eyesColor;
+      copyTmp.querySelector('.wizard-coat').style.fill = wizardList[i].colorCoat;
+      copyTmp.querySelector('.wizard-eyes').style.fill = wizardList[i].colorEyes;
 
       wizardTemplateContainer.appendChild(copyTmp);
     }
