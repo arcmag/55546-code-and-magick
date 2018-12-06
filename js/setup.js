@@ -163,7 +163,6 @@
   }
 
   function createWizardTemplateList(wizardList) {
-    console.log(wizardList);
     var wizardTemplateContainer = document.createDocumentFragment();
     var tmp = document.querySelector('#similar-wizard-template');
     var wizardItemTmp = tmp.content.querySelector('.setup-similar-item');
