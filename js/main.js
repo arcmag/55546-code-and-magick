@@ -2,6 +2,7 @@
 
 (function () {
   window.main = {
-    setupBlock: document.querySelector('.setup')
+    setupBlock: document.querySelector('.setup'),
+    wizardList: []
   };
 }());
