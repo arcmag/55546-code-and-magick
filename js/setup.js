@@ -106,11 +106,6 @@
     } else if (elem === wizardFireball) {
       wizardFireball.style.background = wizardFireballColorField.value = getRandomArrayElement(FIREBALL_COLOR_LIST);
     }
-
-    // window.debounce(function (color) {
-    //   console.log(1);
-    //   updateWizardsList();
-    // })();
   }
 
   function keydownCloseSetupBlock(e) {
@@ -119,13 +114,14 @@
     }
   }
 
-  function sortSimilarWizards (wizards) {
+  function sortSimilarWizards(wizards) {
     return wizards.map(function (wizard) {
       wizard.priority = 0;
 
       if (wizardCoatColorField.value === wizard.colorCoat) {
         wizard.priority += 3;
       }
+
       if (wizardEyesColorField.value === wizard.colorEyes) {
         wizard.priority += 2;
       }
