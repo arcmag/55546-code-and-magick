@@ -76,7 +76,12 @@
 
   function updateWizardsList() {
     setupSimilarList.innerHTML = '';
-    setupSimilarList.appendChild(createWizardTemplateList(sortSimilarWizards(wizardsList)));
+    outputWizardList();
+  }
+
+  function outputWizardList() {
+    var wizardListHTML = createWizardTemplateList(sortSimilarWizards(wizardsList));
+    setupSimilarList.appendChild(wizardListHTML);
   }
 
   setupWizardForm.addEventListener('submit', function (e) {
@@ -146,7 +151,7 @@
 
     var onLoad = function (result) {
       wizardsList = result;
-      setupSimilarList.appendChild(createWizardTemplateList(sortSimilarWizards(wizardsList)));
+      outputWizardList();
     };
 
     var onError = function () {
@@ -156,7 +161,7 @@
     if (wizardsList.length === 0) {
       window.backend.load(onLoad, onError);
     } else {
-      setupSimilarList.appendChild(createWizardTemplateList(sortSimilarWizards(wizardsList)));
+      outputWizardList();
     }
 
     setupBlock.style.left = '';
